@@ -13,9 +13,9 @@ export const CardResult = ({ values }) => {
 
     return (
         <View style={styles.content}>
-            <Text>Taxa de Juros ao mês: {valueTax }%</Text>
-            <Text>Prestações:  {qtyPlots}x de R$ {valuePlots.toFixed(2)}</Text>
-            <Text>Valor total: R$ {totalValue.toFixed(2)}</Text>
+            <Text style={styles.text}>Taxa de Juros ao mês: {valueTax.toFixed(2)}%</Text>
+            <Text style={styles.text}>Prestações:  {qtyPlots}x de {valuePlots.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}</Text>
+            <Text style={styles.text}>Valor total: {totalValue.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}</Text>
         </View>
     )
 }
@@ -24,16 +24,16 @@ export const CardResult = ({ values }) => {
 const styles = StyleSheet.create({
     content: {
         width: '100%',
-        height: 250,
+        height: 200,
         marginTop: 20,
         borderWidth: 2,
         borderColor: '#858585',
         borderRadius: 15,
         padding: 20,
-
-        textAlign: 'justify'
+        textAlign: 'justify',
+        justifyContent: 'space-around',
     },
     text: {
-        fontSize: 14,
+        fontSize: 16,
     }
 })  

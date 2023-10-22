@@ -12,7 +12,6 @@ export const Home = () => {
         setCalculatedValues(calculation);
     }
 
-
     return (
         <>
             <FormHome onAddInfoCalculated={addInfoCalculated} />
@@ -29,26 +28,3 @@ export const Home = () => {
         </>
     )
 }
-
-const styles = StyleSheet.create({
-    contentMain: {
-        marginTop: 30
-    },
-    slider: {
-        width: '100%',
-        height: 40,
-    },
-    formGroup: {
-        flexDirection: 'row',
-        justifyContent: 'space-between'
-    },
-    formLabel: {
-        fontSize: 16,
-        marginBottom: 5,
-        fontWeight: 'bold',
-        textAlign: 'justify',
-    },
-    valueForm: {
-        fontSize: 12,
-    },
-});

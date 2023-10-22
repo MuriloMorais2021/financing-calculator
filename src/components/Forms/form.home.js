@@ -4,23 +4,36 @@ import Slider from '@react-native-community/slider';
 
 
 
-export const FormHome =  ({ onAddInfoCalculated }) => {
+export const FormHome = ({ onAddInfoCalculated }) => {
     const [valueVehicle, setValueVehicle] = useState(0);
     const [valueTax, setValueTax] = useState(0);
     const [qtyPlots, setQtyPlots] = useState(0);
 
-    const  handleAddInfoCalculated = () => {
+    const listCalculation = {
+        'valueVehicle': parseFloat(valueVehicle),
+        'valueTax': parseFloat(valueTax),
+        'qtyPlots': parseInt(qtyPlots),
+    }
 
-        // if (!valueVehicle || !valueTax || !qtyPlots) return;/*  */
+    const updateObj = (key, value) => {
+        listCalculation[key] = value;
 
+        if (onAddInfoCalculated) onAddInfoCalculated(listCalculation);
+    }
 
-        const listCalculation = {
-            'valueVehicle': parseFloat(valueVehicle.toFixed(2)),
-            'valueTax': parseFloat(valueTax.toFixed(2)),
-            'qtyPlots': parseInt(qtyPlots),
-        }
+    const handleAddValueVehicle = (value) => {
+        setValueVehicle(value);
+        updateObj('valueVehicle', value);
+    }
 
-        onAddInfoCalculated(listCalculation);
+    const handleAddValueTax = (value) => {
+        setValueTax(value)
+        updateObj('valueTax', value);
+    }
+
+    const handleAddQtyPos = (value) => {
+        setQtyPlots(value)
+        updateObj('qtyPlots', value);
     }
 
     return (
@@ -28,7 +41,7 @@ export const FormHome =  ({ onAddInfoCalculated }) => {
             <View style={styles.contentMain}>
                 <View style={styles.formGroup}>
                     <Text style={styles.formLabel}>Valor do Veículo</Text>
-                    <Text style={styles.valueForm}>R$ {valueVehicle.toFixed(2)}</Text>
+                    <Text style={styles.valueForm}>{valueVehicle.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</Text>
                 </View>
                 <Slider
                     style={styles.slider}
@@ -37,7 +50,7 @@ export const FormHome =  ({ onAddInfoCalculated }) => {
                     step={500}
                     minimumTrackTintColor="blue"
                     maximumTrackTintColor="#858585"
-                    onValueChange={(number) => { setValueVehicle(number);  handleAddInfoCalculated() }}
+                    onValueChange={(value) => { handleAddValueVehicle(value) }}
                 />
                 <View style={styles.formGroup}>
                     <Text style={styles.formLabel}>Taxa de Juros</Text>
@@ -50,7 +63,7 @@ export const FormHome =  ({ onAddInfoCalculated }) => {
                     step={.05}
                     minimumTrackTintColor="blue"
                     maximumTrackTintColor="#858585"
-                    onValueChange={(number) => { setValueTax(number); handleAddInfoCalculated() }}
+                    onValueChange={(value) => { handleAddValueTax(value) }}
                 />
                 <View style={styles.formGroup}>
                     <Text style={styles.formLabel}>Qtd Parcelas</Text>
@@ -63,7 +76,7 @@ export const FormHome =  ({ onAddInfoCalculated }) => {
                     step={12}
                     minimumTrackTintColor="blue"
                     maximumTrackTintColor="#858585"
-                    onValueChange={(number) => { setQtyPlots(number); handleAddInfoCalculated() }}
+                    onValueChange={(value) => { handleAddQtyPos(value) }}
                 />
             </View>
         </>

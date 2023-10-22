@@ -5,7 +5,7 @@ import { StyleSheet, Text, View } from "react-native";
 export const CardEmpty = ()=>{
     return (
         <View style={styles.content}>
-            <Text style={styles.text}>Preencha todos os valores</Text>
+            <Text style={styles.text}>Preencha todos os valores para que seja realizada a simulação</Text>
         </View>
     )
 } 
